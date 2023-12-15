@@ -1,8 +1,14 @@
 using Microsoft.AspNetCore.HttpLogging;
 using Rentler.Interview.Api.Configuration;
+using Rentler.Interview.Api.Data;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+var connectionString = configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddScoped(_ => new FoodRepository(connectionString));
 
 builder.Services.AddHttpLogging(logging =>
 {

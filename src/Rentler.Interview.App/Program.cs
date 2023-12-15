@@ -1,2 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+
+using Rentler.Interview.Client;
+
+var food = await FoodApi.GetFood();
+
+Console.WriteLine(food);
